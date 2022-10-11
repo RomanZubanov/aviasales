@@ -1,3 +1,11 @@
-.App-title {
-    color: tomato;
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 752px;
+    margin: auto;
+}
+
+.main_content {
+    width: 502px;
 }
