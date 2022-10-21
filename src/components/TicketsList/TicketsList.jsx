@@ -1,9 +1,9 @@
-import Ticket from '../Ticket';
+import Ticket from '../Ticket'
 
-import style from './TicketsList.module.css';
+import style from './TicketsList.module.css'
 
 export default function TicketsList() {
-  const ticketsList = [<Ticket key={1} />, <Ticket key={2} />, <Ticket key={3} />];
+  const ticketsList = [<Ticket key={1} />, <Ticket key={2} />, <Ticket key={3} />]
 
   return (
     <div>
@@ -12,5 +12,5 @@ export default function TicketsList() {
         Показать еще 5 билетов!
       </button>
     </div>
-  );
+  )
 }

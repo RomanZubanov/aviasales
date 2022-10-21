@@ -1,3 +1,3 @@
-import FilterTop from './FilterTop';
+import FilterTop from './FilterTop'
 
-export default FilterTop;
+export default FilterTop

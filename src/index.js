@@ -1,17 +1,24 @@
-import ReactDOM from 'react-dom/client';
-import 'normalize.css';
+import ReactDOM from 'react-dom/client'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-import App from './components/App';
-import style from './index.module.css';
-import 'antd/dist/antd.min.css';
+import filterTransferReducer from './reducer'
+import App from './components/App'
+import 'antd/dist/antd.min.css'
+import 'normalize.css'
+
+const store = createStore(
+  filterTransferReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // eslint-disable-line
+)
 
 function Wrapper() {
   return (
-    <div className={style.wrapper}>
+    <Provider store={store}>
       <App />
-    </div>
-  );
+    </Provider>
+  )
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Wrapper />);
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<Wrapper />)

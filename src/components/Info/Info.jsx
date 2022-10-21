@@ -1,4 +1,4 @@
-import style from './Info.module.css';
+import style from './Info.module.css'
 
 export default function Info({ title, value }) {
   return (
@@ -6,5 +6,5 @@ export default function Info({ title, value }) {
       <span className={style.title}>{title}</span>
       <span className={style.value}>{value}</span>
     </div>
-  );
+  )
 }

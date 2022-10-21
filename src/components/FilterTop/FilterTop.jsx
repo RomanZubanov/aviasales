@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import classNames from 'classnames';
+import { useState } from 'react'
+import classNames from 'classnames'
 
-import style from './FilterTop.module.css';
+import style from './FilterTop.module.css'
 
 export default function FilterTop() {
-  const [filterValue, setFilterValue] = useState('cheapest');
+  const [filterValue, setFilterValue] = useState('cheapest')
 
   const onSelect = (event) => {
-    setFilterValue(event.target.value);
-  };
+    setFilterValue(event.target.value)
+  }
 
   return (
     <div className={classNames(style.top_filter, style[filterValue])}>
@@ -25,5 +25,5 @@ export default function FilterTop() {
         <span>Оптимальный</span>
       </label>
     </div>
-  );
+  )
 }

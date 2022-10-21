@@ -1,27 +1,37 @@
 .info {
-    display: flex;
-    flex-direction: column;
-    width: 140px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
-    font-family: "Open Sans", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #A0B0B9;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #a0b0b9;
 }
 
 .value {
-    font-family: "Open Sans", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
-    color: #4A4A4A;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #4a4a4a;
+}
+
+@media screen and (max-width: 400px) {
+  .title {
+    font-size: 11px;
+    line-height: 18px;
+  }
+  .value {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
