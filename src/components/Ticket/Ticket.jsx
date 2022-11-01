@@ -1,24 +1,53 @@
 import Info from '../Info'
+import timeFormat from '../../helpers/timeFormat'
+import durationFormat from '../../helpers/durationFormat'
+import stopsQuantity from '../../helpers/stopsQuantity'
 
 import style from './Ticket.module.css'
-import logo from './s7-logo.png'
 
-export default function Ticket() {
+export default function Ticket({ ticket }) {
+  const {
+    price,
+    carrier,
+    segments: [
+      {
+        origin: originForward,
+        destination: destinationForward,
+        date: dateForward,
+        stops: stopsForward,
+        duration: durationForward,
+      },
+      { origin: originBack, destination: destinationBack, date: dateBack, stops: stopsBack, duration: durationBack },
+    ],
+  } = ticket
+
+  const priceFormatted = `${Math.floor(price / 1000)} ${price % 1000} Р`
+
+  const departureTimeForward = timeFormat(dateForward)
+  const arrivalTimeForward = timeFormat(dateForward, durationForward)
+  const departureTimeBack = timeFormat(dateBack)
+  const arrivalTimeBack = timeFormat(dateBack, durationBack)
+  const durationForwardFormat = durationFormat(durationForward)
+  const durationBackFormat = durationFormat(durationBack)
+
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <span className={style.price}>13 400 Р</span>
-        <img src={logo} alt="s7-logo" />
+        <span className={style.price}>{priceFormatted}</span>
+        <img src={`https://pics.avs.io/99/36/${carrier}.png`} alt={`${carrier} logo`} />
       </div>
       <div className={style.info}>
-        <Info title="MOW – HKT" value="10:45 – 08:00" />
-        <Info title="В пути" value="21ч 15м" />
-        <Info title="2 пересадки" value="HKG, JNB" />
+        <Info
+          title={`${originForward} – ${destinationForward}`}
+          value={`${departureTimeForward} – ${arrivalTimeForward}`}
+        />
+        <Info title="В пути" value={durationForwardFormat} />
+        <Info title={stopsQuantity(stopsForward)} value={stopsForward.join(', ')} />
       </div>
       <div className={style.info}>
-        <Info title="MOW – HKT" value="11:20 – 00:50" />
-        <Info title="В пути" value="13ч 30м" />
-        <Info title="1 пересадка" value="HKG" />
+        <Info title={`${originBack} – ${destinationBack}`} value={`${departureTimeBack} – ${arrivalTimeBack}`} />
+        <Info title="В пути" value={durationBackFormat} />
+        <Info title={stopsQuantity(stopsBack)} value={stopsBack.join(', ')} />
       </div>
     </div>
   )

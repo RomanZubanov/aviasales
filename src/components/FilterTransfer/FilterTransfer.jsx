@@ -1,10 +1,19 @@
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { setFilterTransfer, filtersTransferNames } from '../../actions'
-
+import {
+  setAll,
+  setNoTransfer,
+  setOneTransfer,
+  setTwoTransfer,
+  setThreeTransfer,
+  selectFilterTransfer,
+} from './filterTransferSlice'
 import style from './FilterLeft.module.css'
 
-function FilterTransfer({ filters, dispatch }) {
+export default function FilterTransfer() {
+  const filterTransfer = useSelector(selectFilterTransfer)
+  const dispatch = useDispatch()
+
   return (
     <div className={style.filter_left}>
       <span className={style.filter_title}>Количество пересадок</span>
@@ -12,10 +21,8 @@ function FilterTransfer({ filters, dispatch }) {
         <label className={style.filter_label} htmlFor="all">
           <input
             className={style.filter_input}
-            onChange={(e) =>
-              dispatch(setFilterTransfer({ filterName: filtersTransferNames.all, value: e.target.checked }))
-            }
-            checked={filters.all}
+            onChange={(e) => dispatch(setAll(e.target.checked))}
+            checked={filterTransfer.all}
             id="all"
             type="checkbox"
           />
@@ -25,10 +32,8 @@ function FilterTransfer({ filters, dispatch }) {
         <label className={style.filter_label} htmlFor="without_transfers">
           <input
             className={style.filter_input}
-            onChange={(e) =>
-              dispatch(setFilterTransfer({ filterName: filtersTransferNames.noTransfer, value: e.target.checked }))
-            }
-            checked={filters.noTransfer}
+            onChange={(e) => dispatch(setNoTransfer(e.target.checked))}
+            checked={filterTransfer.noTransfer}
             id="without_transfers"
             type="checkbox"
           />
@@ -38,10 +43,8 @@ function FilterTransfer({ filters, dispatch }) {
         <label className={style.filter_label} htmlFor="one_transfer">
           <input
             className={style.filter_input}
-            onChange={(e) =>
-              dispatch(setFilterTransfer({ filterName: filtersTransferNames.oneTransfer, value: e.target.checked }))
-            }
-            checked={filters.oneTransfer}
+            onChange={(e) => dispatch(setOneTransfer(e.target.checked))}
+            checked={filterTransfer.oneTransfer}
             id="one_transfer"
             type="checkbox"
           />
@@ -51,10 +54,8 @@ function FilterTransfer({ filters, dispatch }) {
         <label className={style.filter_label} htmlFor="two_transfers">
           <input
             className={style.filter_input}
-            onChange={(e) =>
-              dispatch(setFilterTransfer({ filterName: filtersTransferNames.twoTransfer, value: e.target.checked }))
-            }
-            checked={filters.twoTransfer}
+            onChange={(e) => dispatch(setTwoTransfer(e.target.checked))}
+            checked={filterTransfer.twoTransfer}
             id="two_transfers"
             type="checkbox"
           />
@@ -64,10 +65,8 @@ function FilterTransfer({ filters, dispatch }) {
         <label className={style.filter_label} htmlFor="three_transfers">
           <input
             className={style.filter_input}
-            onChange={(e) =>
-              dispatch(setFilterTransfer({ filterName: filtersTransferNames.threeTransfer, value: e.target.checked }))
-            }
-            checked={filters.threeTransfer}
+            onChange={(e) => dispatch(setThreeTransfer(e.target.checked))}
+            checked={filterTransfer.threeTransfer}
             id="three_transfers"
             type="checkbox"
           />
@@ -78,7 +77,3 @@ function FilterTransfer({ filters, dispatch }) {
     </div>
   )
 }
-
-const mapStateToProps = (state) => ({ filters: state })
-
-export default connect(mapStateToProps)(FilterTransfer)

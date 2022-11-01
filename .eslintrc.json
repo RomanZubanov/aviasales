@@ -27,6 +27,8 @@
         "import"
     ],
     "rules": {
+        "no-plusplus": "off",
+        "no-param-reassign": "off",
         "indent": ["error", 2],
         "prettier/prettier": "error",
         "linebreak-style": [0, "unix"],

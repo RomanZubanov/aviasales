@@ -1,5 +1,5 @@
 import TicketsList from '../TicketsList'
-import FilterTop from '../FilterTop'
+import FilterTickets from '../FilterTickets'
 import Header from '../Header'
 import FilterTransfer from '../FilterTransfer'
 
@@ -12,7 +12,7 @@ export default function App() {
       <main className={style.main}>
         <FilterTransfer />
         <section className={style.main_content}>
-          <FilterTop />
+          <FilterTickets />
           <TicketsList />
         </section>
       </main>
