@@ -21,7 +21,7 @@ export default function Ticket({ ticket }) {
     ],
   } = ticket
 
-  const priceFormatted = `${Math.floor(price / 1000)} ${price % 1000} Р`
+  const priceFormatted = `${Math.floor(price / 1000)} ${String(price).slice(-3)} Р`
 
   const departureTimeForward = timeFormat(dateForward)
   const arrivalTimeForward = timeFormat(dateForward, durationForward)

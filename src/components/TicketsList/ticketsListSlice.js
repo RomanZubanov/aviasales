@@ -5,7 +5,10 @@ import getTickets from '../../services/getTickets'
 
 export const fetchSearchId = createAsyncThunk('ticketsList/fetchSearchId', async () => getSearchId())
 
-export const fetchTickets = createAsyncThunk('ticketsList/fetchTickets', async (searchId) => getTickets(searchId))
+export const fetchTickets = createAsyncThunk('ticketsList/fetchTickets', async (_, { getState }) => {
+  const searchId = getState().ticketsList.searchId.value
+  return getTickets(searchId)
+})
 
 const initialState = {
   searchId: {
@@ -16,6 +19,8 @@ const initialState = {
   tickets: [],
   status: 'idle',
   error: null,
+  tryAfterError: 0,
+  stop: false,
 }
 
 const ticketsListSlice = createSlice({
@@ -40,11 +45,14 @@ const ticketsListSlice = createSlice({
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.tickets = action.payload.tickets
+        state.tickets.push(action.payload.tickets)
+        state.tryAfterError = 0
+        state.stop = action.payload.stop
       })
       .addCase(fetchTickets.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
+        state.tryAfterError += 1
       })
   },
 })

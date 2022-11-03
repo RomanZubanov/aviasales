@@ -8,6 +8,7 @@ export const filterTransferSlice = createSlice({
     oneTransfer: false,
     twoTransfer: false,
     threeTransfer: false,
+    change: false,
   },
   reducers: {
     setAll: (state, action) => {
@@ -18,6 +19,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       return {
@@ -26,6 +28,7 @@ export const filterTransferSlice = createSlice({
         oneTransfer: false,
         twoTransfer: false,
         threeTransfer: false,
+        change: !state.change,
       }
     },
     setNoTransfer: (state, action) => {
@@ -36,6 +39,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       if (
@@ -48,6 +52,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       return { ...state, noTransfer: action.payload }
@@ -60,6 +65,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: false,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       if (
@@ -72,6 +78,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       return { ...state, oneTransfer: action.payload }
@@ -84,6 +91,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: false,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       if (
@@ -96,6 +104,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
       return { ...state, twoTransfer: action.payload }
@@ -108,6 +117,7 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: false,
+          change: !state.change,
         }
       }
       if (
@@ -120,9 +130,10 @@ export const filterTransferSlice = createSlice({
           oneTransfer: true,
           twoTransfer: true,
           threeTransfer: true,
+          change: !state.change,
         }
       }
-      return { ...state, threeTransfer: action.payload }
+      return { ...state, threeTransfer: action.payload, change: !state.change }
     },
   },
 })
