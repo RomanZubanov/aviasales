@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import style from './Info.module.css'
 
 export default function Info({ title, value }) {
@@ -7,4 +9,14 @@ export default function Info({ title, value }) {
       <span className={style.value}>{value}</span>
     </div>
   )
+}
+
+Info.defaultProps = {
+  title: '',
+  value: '',
+}
+
+Info.propTypes = {
+  title: PropTypes.string,
+  value: PropTypes.string,
 }

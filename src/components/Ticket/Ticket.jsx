@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import Info from '../Info'
 import timeFormat from '../../helpers/timeFormat'
 import durationFormat from '../../helpers/durationFormat'
@@ -51,4 +53,37 @@ export default function Ticket({ ticket }) {
       </div>
     </div>
   )
+}
+
+Ticket.defaultProps = {
+  ticket: {
+    price: 0,
+    carrier: '',
+    segments: [
+      {
+        origin: '',
+        destination: '',
+        date: '',
+        stops: [],
+        duration: 0,
+      },
+      {
+        origin: '',
+        destination: '',
+        date: '',
+        stops: [],
+        duration: 0,
+      },
+    ],
+  },
+}
+
+Ticket.propTypes = {
+  ticket: PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    carrier: PropTypes.string.isRequired,
+    segments: PropTypes.arrayOf(
+      PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.string)]))
+    ),
+  }),
 }

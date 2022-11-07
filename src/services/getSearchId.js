@@ -6,8 +6,8 @@ export default async function getSearchId() {
       data = await response.json()
       return data
     }
-    throw new Error(response.statusText)
+    throw new Error(`${response.status}`)
   } catch (err) {
-    return Promise.reject(err.message ? err.message : data)
+    return Promise.reject(err)
   }
 }

@@ -1,0 +1,16 @@
+.message {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: solid 1px #2196f3;
+    border-radius: 5px;
+}
+
+.message :first-child {
+    margin-right: 10px;
+}
+
+.message > span {
+    font-size: 16px;
+}

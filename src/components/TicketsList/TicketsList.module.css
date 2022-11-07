@@ -24,6 +24,22 @@
   color: #ffffff;
 }
 
+.btn_show_more:hover:not(.btn_show_more--disabled) {
+  box-shadow: 0 5px 5px rgba(33, 150, 243, 0.5);
+}
+
+.btn_show_more:active:not(.btn_show_more--disabled) {
+  box-shadow: inset 0 5px 5px black;
+}
+
+.btn_show_more--disabled {
+  background-color: lightgray;
+}
+
+.btn_show_more--hidden {
+  display: none;
+}
+
 @media screen and (max-width: 400px) {
   .btn_show_more {
     border-radius: 0;

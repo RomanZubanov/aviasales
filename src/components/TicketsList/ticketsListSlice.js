@@ -51,8 +51,12 @@ const ticketsListSlice = createSlice({
       })
       .addCase(fetchTickets.rejected, (state, action) => {
         state.status = 'failed'
+        if (Number(action.error.message) < 500) {
+          state.tryAfterError = 6
+        } else {
+          state.tryAfterError += 1
+        }
         state.error = action.error.message
-        state.tryAfterError += 1
       })
   },
 })
