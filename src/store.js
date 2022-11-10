@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import filterTransferReducer from './components/FilterTransfer/filterTransferSlice'
-import filterTicketsReducer from './components/FilterTickets/filterTicketsSlice'
-import ticketsListReducer from './components/TicketsList/ticketsListSlice'
+import filterTransferReducer from './features/FilterTransfer/filterTransferSlice'
+import filterTicketsReducer from './features/FilterTickets/filterTicketsSlice'
+import ticketsListReducer from './features/TicketsList/ticketsListSlice'
 
 export default configureStore({
   reducer: {

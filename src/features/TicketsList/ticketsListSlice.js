@@ -14,7 +14,6 @@ const initialState = {
   searchId: {
     status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     value: '',
-    error: null,
   },
   tickets: [],
   status: 'idle',
@@ -38,15 +37,16 @@ const ticketsListSlice = createSlice({
       })
       .addCase(fetchSearchId.rejected, (state, action) => {
         state.searchId.status = 'failed'
-        state.searchId.error = action.error.message
+        state.error = action.error.message
       })
       .addCase(fetchTickets.pending, (state) => {
         state.status = 'loading'
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.tickets.push(action.payload.tickets)
+        state.tickets.push(...action.payload.tickets)
         state.tryAfterError = 0
+        state.error = null
         state.stop = action.payload.stop
       })
       .addCase(fetchTickets.rejected, (state, action) => {

@@ -1,7 +1,7 @@
-import TicketsList from '../TicketsList'
-import FilterTickets from '../FilterTickets'
+import TicketsList from '../../features/TicketsList'
+import FilterTickets from '../../features/FilterTickets'
 import Header from '../Header'
-import FilterTransfer from '../FilterTransfer'
+import FilterTransfer from '../../features/FilterTransfer'
 
 import style from './App.module.css'
 

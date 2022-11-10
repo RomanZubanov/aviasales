@@ -4,6 +4,7 @@ html {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
+
 *,
 *:before,
 *:after {
@@ -12,7 +13,7 @@ html {
 
 .wrapper {
   width: 100%;
-  min-height: 100vh;
+  min-height: 101vh;
   background-color: #f3f7fa;
 }
 
