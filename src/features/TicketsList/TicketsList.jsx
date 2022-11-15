@@ -14,6 +14,7 @@ let key = 0
 
 export default function TicketsList() {
   const [numberTicketsRender, setNumberTicketsRender] = useState(5)
+  const [renderedTickets, setRenderedTickets] = useState([])
 
   const dispatch = useDispatch()
 
@@ -43,18 +44,19 @@ export default function TicketsList() {
     }
   }, [ticketsData, searchId.status, stop, tryAfterError, dispatch])
 
-  const renderTickets = () => {
-    if (stop && notEmptyFilter) {
-      return JSON.parse(JSON.stringify(ticketsData))
-        .filter(filterFunction(filterMode))
-        .sort(sortFunction(sortMode))
-        .slice(0, numberTicketsRender)
-        .map((ticket) => <Ticket key={key++} ticket={ticket} />)
+  useEffect(() => {
+    const renderTickets = () => {
+      if (notEmptyFilter) {
+        return JSON.parse(JSON.stringify(ticketsData))
+          .filter(filterFunction(filterMode))
+          .sort(sortFunction(sortMode))
+          .slice(0, numberTicketsRender)
+          .map((ticket) => <Ticket key={key++} ticket={ticket} />)
+      }
+      return []
     }
-    return null
-  }
-
-  const renderedTickets = renderTickets() || []
+    setRenderedTickets(renderTickets())
+  }, [filterMode, sortMode, notEmptyFilter, numberTicketsRender, ticketsData])
 
   const showError = () => {
     if (searchId.status === 'failed' || tryAfterError === 6) {
@@ -86,7 +88,7 @@ export default function TicketsList() {
   return (
     <div>
       {showError() || showMessage()}
-      <div className={style.tickets_list}>{renderTickets()}</div>
+      <div className={style.tickets_list}>{renderedTickets}</div>
       <button className={classButton} type="button" onClick={() => setNumberTicketsRender(numberTicketsRender + 5)}>
         Показать еще 5 билетов!
       </button>
